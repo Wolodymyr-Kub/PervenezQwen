@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bible Quotes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="language-selector">
+    <select id="language-select">
+      <option value="en">English</option>
+      <option value="uk">Українська</option>
+      <option value="cs">Čeština</option>
+      <option value="pl">Polski</option>
+      <option value="de">Deutsch</option>
+      <option value="es">Español</option>
+      <option value="sv">Svenska</option>
+    </select>
+  </div>
+
+  <h1 id="main-title" style="text-align:center">Bible Quotes Collection</h1>
+  
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="Search topics and quotes..." />
+    <button id="search-btn">Search</button>
+    <button id="clear-search-btn">Clear</button>
+  </div>
+  
+  <div class="input-form">
+    <label id="topic-label" for="topic-name">Topic name:</label>
+    <input type="text" id="topic-name" placeholder="Enter topic name" required />
+    <div id="stickers-inputs">
+      <!-- Dynamic fields for stickers -->
+    </div>
+    <button id="add-quote-btn">Add Bible quote</button>
+    <button id="add-topic-btn">Add Topic</button>
+    <button id="clear-form-btn">Clear Form</button>
+  </div>
+  
+  <div id="pyramid"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

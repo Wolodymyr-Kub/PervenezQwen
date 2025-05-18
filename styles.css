@@ -1,0 +1,332 @@
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #f9f9f9;
+  touch-action: pan-y;
+}
+
+.language-selector {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 2000;
+  transition: opacity 0.3s;
+}
+
+.language-selector.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.language-selector select {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: white;
+}
+
+.bar {
+  width: 100%;
+  margin: 10px auto;
+  background: #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+}
+
+.bar.expanded {
+  padding-bottom: 20px;
+}
+
+.bar-title {
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  background: #bbb;
+}
+
+/* Color themes for bars */
+.bar:nth-child(5n+1) .bar-title { background: #FF9AA2; }
+.bar:nth-child(5n+2) .bar-title { background: #FFB7B2; }
+.bar:nth-child(5n+3) .bar-title { background: #FFDAC1; }
+.bar:nth-child(5n+4) .bar-title { background: #E2F0CB; }
+.bar:nth-child(5n+5) .bar-title { background: #B5EAD7; }
+
+.stickers-container {
+  width: 100%;
+  display: none;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  position: relative;
+  min-height: 130px;
+}
+
+.bar.expanded .stickers-container {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.97);
+  z-index: 1000;
+  padding: 20px;
+  overflow: auto;
+  touch-action: none;
+}
+
+.sticker {
+  position: absolute;
+  display: inline-block;
+  min-width: 100px;
+  max-width: 300px;
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  transform: rotate(var(--rotation));
+  cursor: move;
+  user-select: none;
+  white-space: normal;
+  overflow-wrap: break-word;
+  font-size: 14px;
+  transition: transform 0.2s;
+  touch-action: none;
+}
+
+.sticker:hover {
+  transform: rotate(0deg) scale(1.05);
+  z-index: 1001;
+}
+
+/* Color themes for stickers */
+.sticker:nth-child(5n+1) { background: #FFF9C4; }
+.sticker:nth-child(5n+2) { background: #E1F5FE; }
+.sticker:nth-child(5n+3) { background: #F1F8E9; }
+.sticker:nth-child(5n+4) { background: #FFEBEE; }
+.sticker:nth-child(5n+5) { background: #F3E5F5; }
+
+.sticker::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+}
+
+.trash-bin {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #ff4444;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1002;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  transition: all 0.3s;
+}
+
+.trash-bin::before {
+  content: '🗑️';
+  font-size: 30px;
+}
+
+.trash-bin.active {
+  transform: scale(1.2);
+  background: #ff0000;
+}
+
+.input-form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.input-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-form button {
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px 5px 5px 0;
+}
+
+.input-form button:hover {
+  background: #45a049;
+}
+
+.input-form button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.sticker-input {
+  margin-bottom: 10px;
+}
+
+.close-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  background: white;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.search-container {
+  max-width: 600px;
+  margin: 20px auto;
+  display: flex;
+  gap: 10px;
+}
+
+.search-container input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+@media (max-width: 768px) {
+  .sticker {
+    min-width: 80px;
+    max-width: 250px;
+    font-size: 12px;
+  }
+  .input-form, .search-container {
+    margin: 10px;
+    padding: 10px;
+  }
+  .trash-bin {
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    right: 15px;
+  }
+  .trash-bin::before {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sticker {
+    min-width: 60px;
+    max-width: 200px;
+    font-size: 10px;
+  }
+  .language-selector {
+    top: 5px;
+    right: 5px;
+  }
+  .language-selector select {
+    padding: 3px;
+    font-size: 12px;
+  }
+}/* === АНІМАЦІЇ СТІКЕРІВ === */
+
+/* Загальні переходи */
+.sticker {
+  transition: transform 0.3s ease, top 0.4s cubic-bezier(0.25, 1, 0.5, 1), left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, top, left;
+}
+
+/* Паралакс ефект при в'їзді */
+.sticker.enter {
+  opacity: 0;
+  transform: scale(0.8) rotate(0deg);
+}
+
+.sticker.enter.active {
+  animation: slideIn 1s ease-out forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(0px) translateY(0px) scale(0.8) rotate(0deg);
+  }
+  20% {
+    opacity: 0.6;
+    transform: translateX(var(--x-start)) translateY(var(--y-start)) scale(0.9) rotate(var(--rotation-start));
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px) translateY(0px) scale(1) rotate(var(--rotation));
+  }
+}
+
+/* Ефект "підстрибування" при старті перетягування */
+.sticker.dragging {
+  z-index: 1002 !important;
+  animation: bounceUp 0.3s ease-out;
+}
+
+@keyframes bounceUp {
+  0% { transform: scale(1) rotate(var(--rotation)); }
+  50% { transform: scale(1.1) rotate(var(--rotation)); }
+  100% { transform: scale(1) rotate(var(--rotation)); }
+}
+
+/* Плавне зникнення при видаленні */
+.sticker.removing {
+  animation: fadeOut 0.5s ease-in forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: scale(0.7) rotate(10deg);
+  }
+}
+
+/* Відштовхування — коротка анімація руху */
+.sticker.pushed {
+  animation: pushBack 0.2s ease-out;
+}
+
+@keyframes pushBack {
+  0% { transform: translate(0, 0) rotate(var(--rotation)); }
+  100% { transform: translate(var(--push-x), var(--push-y)) rotate(var(--rotation)); }
+}
